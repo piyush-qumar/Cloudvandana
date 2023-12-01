@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      form {
+        max-width: 400px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+      }
+      .checkbox-group {
+        margin-bottom: 16px;
+      }
+      button {
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="surveyForm" onsubmit="submitForm(); return false;">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" required />
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" required />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" required />
+
+      <label for="country">Country:</label>
+      <select id="country" required>
+        <option value="">Select Country</option>
+        <option value="USA">India</option>
+        <option value="USA">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="Germany">Germany</option>
+      </select>
+
+      <div class="checkbox-group">
+        <label>Gender:</label>
+        <label><input type="checkbox" name="gender" value="male" /> Male</label>
+        <label
+          ><input type="checkbox" name="gender" value="female" /> Female</label
+        >
+        <label
+          ><input type="checkbox" name="gender" value="other" /> Other</label
+        >
+      </div>
+
+      <label for="profession">Profession:</label>
+      <input type="text" id="profession" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="mobileNumber">Mobile Number:</label>
+      <input type="tel" id="mobileNumber" required />
+
+      <button type="submit">Submit</button>
+      <button type="button" onclick="resetForm()">Reset</button>
+    </form>
+
+    <script>
+      function submitForm() {
+        // Validation logic
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const dob = document.getElementById("dob").value;
+        const country = document.getElementById("country").value;
+        const genderCheckboxes = document.querySelectorAll(
+          'input[name="gender"]:checked'
+        );
+        const profession = document.getElementById("profession").value;
+        const email = document.getElementById("email").value;
+        const mobileNumber = document.getElementById("mobileNumber").value;
+
+        // Check if all fields are filled
+        if (
+          !firstName ||
+          !lastName ||
+          !dob ||
+          !country ||
+          genderCheckboxes.length === 0 ||
+          !profession ||
+          !email ||
+          !mobileNumber
+        ) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        // Construct result message
+        let resultMessage = `First Name: ${firstName}\n`;
+        resultMessage += `Last Name: ${lastName}\n`;
+        resultMessage += `Date of Birth: ${dob}\n`;
+        resultMessage += `Country: ${country}\n`;
+        resultMessage += "Gender: ";
+        genderCheckboxes.forEach((checkbox) => {
+          resultMessage += `${checkbox.value}, `;
+        });
+        resultMessage = resultMessage.slice(0, -2); // Remove the trailing comma and space
+        resultMessage += `\nProfession: ${profession}\n`;
+        resultMessage += `Email: ${email}\n`;
+        resultMessage += `Mobile Number: ${mobileNumber}`;
+
+        // Display result in a popup
+        alert(resultMessage);
+
+        // Reset the form
+        resetForm();
+      }
+
+      function resetForm() {
+        document.getElementById("surveyForm").reset();
+      }
+    </script>
+  </body>
+</html>

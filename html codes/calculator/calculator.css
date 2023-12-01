@@ -1,0 +1,37 @@
+#calculator {
+    width: 200px;
+    margin: 0 auto;
+  }
+  
+  #display {
+    width: 100%;
+    text-align: right;
+  }
+  
+  #buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .number {
+    background-color: #ccc;
+  }
+  
+  .operator {
+    background-color: #ff0000;
+  }
+  
+  .equals {
+    background-color: #009900;
+  }
+  
+  .clear {
+    background-color: #ff0000;
+  }
+  
